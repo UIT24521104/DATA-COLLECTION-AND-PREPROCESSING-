@@ -1,0 +1,143 @@
+# ════════════════════════════════════════════════════════════════════════════════
+# WorldBank Data Analysis Project - Complete Requirements
+# Python 3.9+ - All packages needed for pipeline, notebooks, and dashboards
+# ════════════════════════════════════════════════════════════════════════════════
+
+# ────────────────────────────────────────────────────────────────────────────────
+# CORE DATA PROCESSING - Essential for all operations
+# ────────────────────────────────────────────────────────────────────────────────
+pandas==1.5.3
+numpy==1.24.3
+
+# ────────────────────────────────────────────────────────────────────────────────
+# MACHINE LEARNING & STATISTICAL ANALYSIS
+# ────────────────────────────────────────────────────────────────────────────────
+scikit-learn==1.3.2
+scipy==1.10.1
+
+# ────────────────────────────────────────────────────────────────────────────────
+# INTERACTIVE DASHBOARDS (Streamlit)
+# ────────────────────────────────────────────────────────────────────────────────
+streamlit>=1.33.0
+
+# ────────────────────────────────────────────────────────────────────────────────
+# VISUALIZATION & PLOTTING
+# ────────────────────────────────────────────────────────────────────────────────
+matplotlib==3.7.2
+seaborn==0.12.2
+plotly>=5.20.0
+kaleido>=0.2.1
+missingno>=0.5.1
+
+# ────────────────────────────────────────────────────────────────────────────────
+# CONFIGURATION & I/O
+# ────────────────────────────────────────────────────────────────────────────────
+pyyaml==6.0
+python-dotenv>=1.0.0
+
+# ────────────────────────────────────────────────────────────────────────────────
+# JUPYTER & INTERACTIVE NOTEBOOKS
+# (Required for .ipynb files: EDA/impute_missing_data.ipynb, etc.)
+# ────────────────────────────────────────────────────────────────────────────────
+jupyter>=1.0.0
+jupyterlab>=4.0.0
+ipython>=8.10.0
+ipykernel>=6.20.0
+ipywidgets>=8.0.0
+
+# ────────────────────────────────────────────────────────────────────────────────
+# TIME SERIES & TRAJECTORY ANALYSIS (MODELS/Trajectory.py)
+# ────────────────────────────────────────────────────────────────────────────────
+dtaidistance>=2.3.0
+
+# ────────────────────────────────────────────────────────────────────────────────
+# OPTIONAL: Development & Testing Tools
+# Uncomment if needed for development
+# ────────────────────────────────────────────────────────────────────────────────
+# pytest>=7.0.0
+# pytest-cov>=4.0.0
+# black>=23.0.0
+# flake8>=6.0.0
+# mypy>=1.0.0
+
+# ════════════════════════════════════════════════════════════════════════════════
+# Installation Instructions:
+# ════════════════════════════════════════════════════════════════════════════════
+# 
+# 1. Create virtual environment:
+#    python -m venv .venv
+#
+# 2. Activate environment:
+#    Windows (PowerShell): .\.venv\Scripts\Activate.ps1
+#    Windows (CMD):       .venv\Scripts\activate
+#    Linux/macOS:         source .venv/bin/activate
+#
+# 3. Upgrade pip:
+#    pip install --upgrade pip setuptools wheel
+#
+# 4. Install all requirements:
+#    pip install -r requirements.txt
+#
+# 5. Verify installation:
+#    python -c "import pandas; import streamlit; import plotly; print('✅ OK')"
+#
+# ════════════════════════════════════════════════════════════════════════════════
+# Package Usage by Component:
+# ════════════════════════════════════════════════════════════════════════════════
+#
+# DIAGNOSITCS/run_pipeline.py & DIAGNOSITCS/modules/:
+#   - pandas, numpy: Data merging & manipulation
+#   - scikit-learn, scipy: Preprocessing, scaling, imputation
+#   - pyyaml: Config management
+#   - python-dotenv: Environment variables
+#
+# MODELS/K-Means.py:
+#   - pandas, numpy: Data processing
+#   - scikit-learn: KMeans, PCA, metrics
+#   - matplotlib, seaborn: Visualization
+#   - scipy: Statistical analysis
+#
+# MODELS/Trajectory.py:
+#   - pandas, numpy: Data processing
+#   - scipy: Distance metrics (cosine, euclidean, KL divergence)
+#   - scikit-learn: Preprocessing, scaling
+#   - dtaidistance: Dynamic Time Warping (DTW) distance
+#   - matplotlib: Plotting (Agg backend for server)
+#
+# STREAMLIT_APP/app.py & pages/:
+#   - streamlit: Web framework
+#   - pandas, numpy: Data handling
+#   - plotly: Interactive charts
+#   - scikit-learn: Processing utilities
+#
+# TRAJECTORY_APP/app.py:
+#   - streamlit: Web framework
+#   - pandas, numpy: Data processing
+#   - plotly: Interactive visualizations
+#   - scipy: Distance calculations
+#   - scikit-learn: Preprocessing
+#
+# EDA/impute_missing_data.ipynb:
+#   - jupyter, jupyterlab, ipython, ipykernel: Notebook execution
+#   - pandas, numpy: Data exploration
+#   - scikit-learn: Imputation methods
+#   - matplotlib, seaborn: Visualization
+#   - plotly: Interactive plots
+#
+# ════════════════════════════════════════════════════════════════════════════════
+# Troubleshooting:
+# ════════════════════════════════════════════════════════════════════════════════
+#
+# If you encounter version conflicts, try:
+#   pip install --upgrade pip
+#   pip cache purge
+#   pip install -r requirements.txt --force-reinstall
+#
+# For Jupyter kernel issues:
+#   python -m ipykernel install --user --name worldbank --display-name "Python (WorldBank)"
+#
+# For Streamlit port issues:
+#   streamlit run app.py --server.port 8502
+#   streamlit run app.py --server.port 8503
+#
+# ════════════════════════════════════════════════════════════════════════════════

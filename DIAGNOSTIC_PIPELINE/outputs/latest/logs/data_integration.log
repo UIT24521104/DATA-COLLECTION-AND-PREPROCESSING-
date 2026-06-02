@@ -1,0 +1,21 @@
+2026-06-02 17:32:50,831 - data_integration - INFO - ==================================================
+2026-06-02 17:32:50,831 - data_integration - INFO - PHASE 0: DATA INTEGRATION
+2026-06-02 17:32:50,831 - data_integration - INFO - ==================================================
+2026-06-02 17:32:50,831 - data_integration - INFO - Step 1: Loading CSV files from E:\WorldBank-Data-Analysis-Project\RAW_DATASET...
+2026-06-02 17:32:50,832 - data_integration - INFO - Loaded 9 feature mappings from E:\WorldBank-Data-Analysis-Project\DIAGNOSTIC_PIPELINE\feature_encoding_rules.json
+2026-06-02 17:32:50,839 - data_integration - INFO - Loaded: Access to electricity (% of population) -> Elec_Access - Shape: (266, 21)
+2026-06-02 17:32:50,842 - data_integration - INFO - Loaded: Agriculture, forestry, and fishing, value added (% of GDP) -> Agri_GDP - Shape: (266, 21)
+2026-06-02 17:32:50,846 - data_integration - INFO - Loaded: Domestic credit to private sector (% of GDP) -> Credit_Private - Shape: (266, 21)
+2026-06-02 17:32:50,848 - data_integration - INFO - Loaded: Employment in services (% of total employment) (modeled ILO estimate) -> Emp_Services - Shape: (266, 21)
+2026-06-02 17:32:50,851 - data_integration - INFO - Loaded: Foreign direct investment, net inflows (% of GDP) -> FDI_GDP - Shape: (266, 21)
+2026-06-02 17:32:50,855 - data_integration - INFO - Loaded: GDP per capita (constant 2015 US$) -> GDPC_2015 - Shape: (266, 21)
+2026-06-02 17:32:50,857 - data_integration - INFO - Loaded: Individuals using the Internet (% of population) -> Internet_Usage - Shape: (266, 21)
+2026-06-02 17:32:50,860 - data_integration - INFO - Loaded: Industry (including construction), value added (% of GDP) -> Indus_GDP - Shape: (266, 21)
+2026-06-02 17:32:50,864 - data_integration - INFO - Loaded: Services, value added (% of GDP) -> Serv_GDP - Shape: (266, 21)
+2026-06-02 17:32:50,864 - data_integration - INFO - Loaded 9 indicators
+2026-06-02 17:32:50,864 - data_integration - INFO - Step 2: Standardizing structure...
+2026-06-02 17:32:50,882 - data_integration - INFO - Step 3: Merging datasets...
+2026-06-02 17:32:50,964 - data_integration - INFO - Merged dataset shape: (5546, 11)
+2026-06-02 17:32:50,965 - data_integration - INFO - Missing values ratio: 8.23%
+2026-06-02 17:32:50,965 - data_integration - INFO - Integration complete!
+2026-06-02 17:32:50,966 - data_integration - INFO - Data info: {'shape': (5546, 11), 'columns': ['Country', 'Year', 'Agri_GDP', 'Credit_Private', 'Elec_Access', 'Emp_Services', 'FDI_GDP', 'GDPC_2015', 'Indus_GDP', 'Internet_Usage', 'Serv_GDP'], 'years_range': (2004, 2024), 'countries_count': 265, 'records_count': 5546, 'missing_percentage': 8.231977182572207, 'numeric_columns': ['Year', 'Agri_GDP', 'Credit_Private', 'Elec_Access', 'Emp_Services', 'FDI_GDP', 'GDPC_2015', 'Indus_GDP', 'Internet_Usage', 'Serv_GDP']}

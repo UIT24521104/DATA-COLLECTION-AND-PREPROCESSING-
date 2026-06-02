@@ -1,0 +1,15 @@
+{
+  "description": "Feature name encoding rules for World Bank indicators. Input CSV filenames remain unchanged; encoded names are applied after loading for integration outputs, diagnostics, and logs.",
+  "version": "1.0",
+  "indicator_mappings": {
+    "Access to electricity (% of population)": "Elec_Access",
+    "Agriculture, forestry, and fishing, value added (% of GDP)": "Agri_GDP",
+    "Domestic credit to private sector (% of GDP)": "Credit_Private",
+    "Employment in services (% of total employment) (modeled ILO estimate)": "Emp_Services",
+    "Foreign direct investment, net inflows (% of GDP)": "FDI_GDP",
+    "GDP per capita (constant 2015 US$)": "GDPC_2015",
+    "Individuals using the Internet (% of population)": "Internet_Usage",
+    "Industry (including construction), value added (% of GDP)": "Indus_GDP",
+    "Services, value added (% of GDP)": "Serv_GDP"
+  }
+}

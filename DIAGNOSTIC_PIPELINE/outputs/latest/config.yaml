@@ -1,0 +1,29 @@
+diagnostics:
+  correlation_threshold: 0.8
+  distribution_bins: 30
+  missing_threshold: 0.5
+phase1:
+  log_transform:
+    add_constant: 1.0
+    base: 10
+    enabled: true
+    features: null
+  outlier_detection:
+    action: clip
+    iqr_multiplier: 1.8
+    isolation_forest_contamination: 0.05
+    method: iqr
+    zscore_threshold: 3.0
+phase2:
+  imputation:
+    method: knn
+    n_neighbors: 5
+    weight_type: distance
+  scaling:
+    features_to_scale: null
+    method: minmax
+pipeline:
+  input_folder: E:\WorldBank-Data-Analysis-Project\nam
+  name: WorldBank Data Pipeline
+  output_folder: E:\WorldBank-Data-Analysis-Project\pipeline_execution\outputs
+  version: '1.0'
