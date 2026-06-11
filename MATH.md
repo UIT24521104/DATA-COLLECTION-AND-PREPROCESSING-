@@ -93,7 +93,7 @@ $$\text{Score}_{V1} = \text{Rank}(\text{DTW}) + \text{Rank}(\text{Cosine}) + \te
 
 *(Lưu ý: Quốc gia có $\text{Score}_{V1}$ càng nhỏ tức là xếp hạng càng cao, thể hiện hình thái chuỗi thời gian càng giống với quốc gia mục tiêu).*
 
-### 4.2. Xếp hạng Tích hợp Toàn diện (`Rank\_Combined`)
+### 4.2. Xếp hạng Tích hợp Toàn diện ($$\text{Rank}_{Combined}$$)
 
 Sử dụng trung bình toán học để dung hòa hai góc nhìn phân tích hoàn toàn độc lập: thứ hạng về mặt biến động hình thái theo thời gian (V1) và thứ hạng về bản chất cấu trúc phân phối nội tại (V2 - JSD). Phép toán này triệt tiêu độ lệch của từng phương pháp đơn lẻ, cho ra thứ hạng độ tương đồng (Similarity Ranking) cuối cùng:
 
