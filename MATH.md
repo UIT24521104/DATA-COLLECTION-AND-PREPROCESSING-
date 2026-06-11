@@ -86,14 +86,44 @@ Sử dụng để đo độ lệch phân phối một cách đối xứng ($JSD(
 
 ## 4. Tích hợp kết quả (Ranking Fusion)
 
-### 4.1. Phép toán gộp thứ hạng bằng Sumo (`df_v1[col].rank()`)
+### 4.1. Gộp thứ hạng theo Borda Count (Phương án 1)
 
-Áp dụng cơ chế xếp hạng không tham số cho Phương án 1 bằng cách tính tổng thứ hạng thành phần (Borda-like count) để cho ra điểm số $\text{Score\_V1}$:
+Do các khoảng cách DTW, Cosine và Euclidean có miền giá trị và tỷ lệ (scale) hoàn toàn khác nhau, thuật toán sử dụng cơ chế xếp hạng không tham số (tương tự phương pháp Borda Count) thay vì cộng trực tiếp giá trị tuyệt đối. Tổng các thứ hạng thành phần sẽ tạo ra điểm số đánh giá độ tương đồng hình thái $\text{Score\_V1}$:
 
 $$\text{Score\_V1} = \text{Rank}(\text{DTW}) + \text{Rank}(\text{Cosine}) + \text{Rank}(\text{Euclidean})$$
 
-### 4.2. Thứ hạng tổ hợp kết hợp (`Rank_Combined`)
+*(Lưu ý: Quốc gia có $\text{Score\_V1}$ càng nhỏ tức là xếp hạng càng cao, thể hiện hình thái chuỗi thời gian càng giống với quốc gia mục tiêu).*
 
-Sử dụng trung bình toán học đơn giản để dung hòa thứ hạng về mặt hình thái thời gian (V1) và bản chất phân phối nội tại (V2):
+### 4.2. Xếp hạng Tích hợp Toàn diện (`Rank_Combined`)
+
+---
+
+### 5.1. Mô hình Phân cụm (Clustering)
+
+### 5.1. Thuật toán K-Means ($K=3$)
+
+Sử dụng để phân tách không gian quốc gia thành 3 dải kinh tế tách biệt dựa trên nguyên lý cực tiểu hóa phương sai nội cụm.
+Hàm mục tiêu WCSS (Within-Cluster Sum of Squares): 
+Thuật toán tìm kiếm các tâm cụm $\mu_k$ sao cho tổng bình phương khoảng cách từ mỗi điểm dữ liệu $x_i$ đến tâm cụm tương ứng của nó $C_k$ là nhỏ nhất:
+$$J = \sum_{k=1}^{K} \sum_{x_i \in C_k} \|x_i - \mu_k\|^2$$
+
+### 5.2. Phân tích Thành phần Chính (PCA - Principal Component Analysis)
+
+Được sử dụng để nén không gian đa chiều (7 đặc trưng) xuống còn 2 chiều (2D) nhằm trực quan hóa các cụm K-Means, đồng thời giữ lại tối đa lượng phương sai (thông tin) gốc.
+
+**Công thức toán học:** PCA tìm các vector riêng (eigenvectors) $w$ và giá trị riêng (eigenvalues) $\lambda$ từ ma trận hiệp phương sai $C$ của dữ liệu:
+$$C w = \lambda w$$Dữ liệu sau đó được chiếu lên các vector riêng có giá trị riêng lớn nhất để tạo ra các tọa độ mới $Z$:$$Z = X W$$
+
+Sử dụng để phân tách không gian quốc gia thành 3 dải kinh tế tách biệt dựa trên nguyên lý cực tiểu hóa phương sai nội cụm.Hàm mục tiêu WCSS (Within-Cluster Sum of Squares): Thuật toán tìm kiếm các tâm cụm $\mu_k$ sao cho tổng bình phương khoảng cách từ mỗi điểm dữ liệu $x_i$ đến tâm cụm tương ứng của nó $C_k$ là nhỏ nhất:
+$$J = \sum_{k=1}^{K} \sum_{x_i \in C_k} \|x_i - \mu_k\|^2$$
+
+Sử dụng trung bình toán học để dung hòa hai góc nhìn phân tích hoàn toàn độc lập: thứ hạng về mặt biến động hình thái theo thời gian (V1) và thứ hạng về bản chất cấu trúc phân phối nội tại (V2 - JSD). Phép toán này triệt tiêu độ lệch của từng phương pháp đơn lẻ, cho ra thứ hạng độ tương đồng (Similarity Ranking) cuối cùng:
 
 $$\text{Rank\_Combined} = \frac{\text{Rank\_V1} + \text{Rank\_V2}}{2}$$
+
+### 6. Kiểm định Thống kê (Statistical Validation)
+### 6.1. Kiểm định Phân tích Phương sai (ANOVA - Analysis of Variance)
+Sử dụng làm bước Post-processing Validation nhằm xác nhận về mặt toán học ($p-value \approx 0$) rằng 3 cụm do K-Means sinh ra có sự khác biệt thực sự về bản chất, không phải do ngẫu nhiên.
+Thống kê F (F-statistic): Là tỷ số giữa phương sai giữa các nhóm (Between-group variance) và phương sai trong nội bộ nhóm (Within-group variance):
+$$F = \frac{\text{Variance Between}}{\text{Variance Within}} = \frac{\frac{SSG}{K-1}}{\frac{SSE}{N-K}}$$
+Trong đó: $SSG$ là tổng bình phương độ lệch giữa các cụm, $SSE$ là tổng bình phương sai số nội cụm, $N$ là tổng số mẫu, và $K$ là số cụm.
