@@ -115,13 +115,20 @@ $$J = \sum_{k=1}^{K} \sum_{x_i \in C_k} \|x_i - \mu_k\|^2$$
 Được sử dụng để nén không gian đa chiều (7 đặc trưng) xuống còn 2 chiều (2D) nhằm trực quan hóa các cụm K-Means, đồng thời giữ lại tối đa lượng phương sai (thông tin) gốc.
 
 - **Công thức toán học:** PCA tìm các vector riêng (eigenvectors) $w$ và giá trị riêng (eigenvalues) $\lambda$ từ ma trận hiệp phương sai $C$ của dữ liệu:
+
 $$C w = \lambda w$$
 
 Dữ liệu sau đó được chiếu lên các vector riêng có giá trị riêng lớn nhất để tạo ra các tọa độ mới $Z$:
 $$Z = X W$$
+
 ### 6. Kiểm định Thống kê (Statistical Validation)
+
 ### 6.1. Kiểm định Phân tích Phương sai (ANOVA - Analysis of Variance)
+
 Sử dụng làm bước Post-processing Validation nhằm xác nhận về mặt toán học ($p-value \approx 0$) rằng 3 cụm do K-Means sinh ra có sự khác biệt thực sự về bản chất, không phải do ngẫu nhiên.
+
 Thống kê F (F-statistic): Là tỷ số giữa phương sai giữa các nhóm (Between-group variance) và phương sai trong nội bộ nhóm (Within-group variance):
+
 $$F = \frac{\text{Variance Between}}{\text{Variance Within}} = \frac{\frac{SSG}{K-1}}{\frac{SSE}{N-K}}$$
+
 Trong đó: $SSG$ là tổng bình phương độ lệch giữa các cụm, $SSE$ là tổng bình phương sai số nội cụm, $N$ là tổng số mẫu, và $K$ là số cụm.
