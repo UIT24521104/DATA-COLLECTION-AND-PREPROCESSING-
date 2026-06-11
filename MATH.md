@@ -16,6 +16,18 @@ Sử dụng để ép dữ liệu vào khoảng cố định nhằm phục vụ 
   $$x_{scaled} = \epsilon + (1 - \epsilon) \times \frac{x - x_{min}}{x_{max} - x_{min}}$$
 - **Thành phần:** Trong code, cấu hình `feature_range=(EPS, 1)` dịch chuyển miền giá trị về $[\epsilon, 1]$ với $\epsilon = 10^{-6}$ nhằm đảm bảo các giá trị sau chuẩn hóa luôn $> 0$.
 
+### 1.3. Chuyển đổi Logarit (Log-Transform)
+
+Được sử dụng để nén các đặc trưng có phân phối lệch phải mạnh (right-skewed) như GDP, kéo dữ liệu tiệm cận về phân phối chuẩn nhằm tối ưu hóa không gian cho các thuật toán dựa trên khoảng cách.
+
+- **Công thức toán học:** Để tránh lỗi toán học khi tính $\log(0)$ hoặc với các số âm, một hằng số $c$ được cộng thêm vào (thường dùng biến thể $\log(1+x)$):
+  $$x_{log} = \ln(x + c)$$
+
+### 1.4. Nội suy đa biến dựa trên cây quyết định (Tree-based Imputation/ MICE)
+
+Sử dụng mô hình học máy để dự đoán và điền khuyết giá trị bị thiếu dựa trên cấu trúc tương quan của tất cả các biến còn lại.
+- **Cơ chế toán học (Iterative Regressor):** Tại bước lặp $t$, đặc trưng bị khuyết $X_j$ được dự đoán bởi hàm hồi quy cây $f$, với đầu vào là các đặc trưng khác đã được điền khuyết tạm thời:
+  $$X_j^{(t)} = f\left(X_1^{(t)}, \dots, X_{j-1}^{(t)}, X_{j+1}^{(t-1)}, \dots, X_n^{(t-1)}\right)$$
 ---
 
 ## 2. Phương án 1: Vector Similarity (Hình thái chuỗi thời gian)
