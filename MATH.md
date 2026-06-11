@@ -96,7 +96,7 @@ Do các khoảng cách DTW, Cosine và Euclidean có miền giá trị và tỷ 
 
 $$\text{Score}_{V1} = \text{Rank}(\text{DTW}) + \text{Rank}(\text{Cosine}) + \text{Rank}(\text{Euclidean})$$
 
-*(Lưu ý: Quốc gia có $\text{Score}_{V1}$ càng nhỏ tức là xếp hạng càng cao, thể hiện hình thái chuỗi thời gian càng giống với quốc gia mục tiêu).*
+*(Lưu ý: Quốc gia có $$\text{Score}_{V1}$$ càng nhỏ tức là xếp hạng càng cao, thể hiện hình thái chuỗi thời gian càng giống với quốc gia mục tiêu).*
 
 ### 4.2. Xếp hạng Tích hợp Toàn diện (Rank Combined)
 
