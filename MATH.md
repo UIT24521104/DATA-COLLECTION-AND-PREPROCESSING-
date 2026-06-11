@@ -20,7 +20,7 @@ Sử dụng để ép dữ liệu vào khoảng cố định nhằm phục vụ 
 
 Được sử dụng để nén các đặc trưng có phân phối lệch phải mạnh (right-skewed) như GDP, kéo dữ liệu tiệm cận về phân phối chuẩn nhằm tối ưu hóa không gian cho các thuật toán dựa trên khoảng cách.
 
-- **Công thức toán học:** Để tránh lỗi toán học khi tính $\log(0)$ hoặc với các số âm, một hằng số $c$ được cộng thêm vào (thường dùng biến thể $\log(1+x)$):
+- **Công thức toán học:** Để tránh lỗi toán học khi tính $\log(0)$ hoặc với các số âm, một hằng số $c$ được cộng thêm vào (thường dùng biến thể $$\log(1+x)$$):
   $$x_{log} = \ln(x + c)$$
 
 ### 1.4. Nội suy đa biến dựa trên cây quyết định (Tree-based Imputation/ MICE)
@@ -93,7 +93,7 @@ $$\text{Score}_{V1} = \text{Rank}(\text{DTW}) + \text{Rank}(\text{Cosine}) + \te
 
 *(Lưu ý: Quốc gia có $\text{Score}_{V1}$ càng nhỏ tức là xếp hạng càng cao, thể hiện hình thái chuỗi thời gian càng giống với quốc gia mục tiêu).*
 
-### 4.2. Xếp hạng Tích hợp Toàn diện ($$\text{Rank}_{Combined}$$)
+### 4.2. Xếp hạng Tích hợp Toàn diện (Rank Combined)
 
 Sử dụng trung bình toán học để dung hòa hai góc nhìn phân tích hoàn toàn độc lập: thứ hạng về mặt biến động hình thái theo thời gian (V1) và thứ hạng về bản chất cấu trúc phân phối nội tại (V2 - JSD). Phép toán này triệt tiêu độ lệch của từng phương pháp đơn lẻ, cho ra thứ hạng độ tương đồng (Similarity Ranking) cuối cùng:
 
