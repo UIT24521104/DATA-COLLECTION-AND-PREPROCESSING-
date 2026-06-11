@@ -41,7 +41,7 @@ Dùng để đo lường khoảng cách hình thái giữa hai chuỗi thời gi
   $$\gamma(i, j) = d(a_i, b_j) + \min\{\gamma(i-1, j), \gamma(i, j-1), \gamma(i-1, j-1)\}$$
 - **Hàm đa biến trong code (`dtw_multi`):** Được tính bằng trung bình cộng khoảng cách DTW của từng đặc trưng đơn lẻ:
   
-  $$\text{DTW}_{multi}(A, B) = \frac{1}{F} \sum_{f=1}^{F} \text{DTW}(A_{:, f}, B_{:, f})$$
+$$\text{DTW}_{multi}(A, B) = \frac{1}{F} \sum_{f=1}^{F} \text{DTW}(A_{:, f}, B_{:, f})$$
 
 ### 2.2. Khoảng cách Cosine (`cosine`)
 
