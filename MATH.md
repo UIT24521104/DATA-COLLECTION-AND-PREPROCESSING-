@@ -40,6 +40,7 @@ Dùng để đo lường khoảng cách hình thái giữa hai chuỗi thời gi
 - **Công thức truy hồi (Quy hoạch động):**
   $$\gamma(i, j) = d(a_i, b_j) + \min\{\gamma(i-1, j), \gamma(i, j-1), \gamma(i-1, j-1)\}$$
 - **Hàm đa biến trong code (`dtw_multi`):** Được tính bằng trung bình cộng khoảng cách DTW của từng đặc trưng đơn lẻ:
+  
   $$\text{DTW}_{multi}(A, B) = \frac{1}{F} \sum_{f=1}^{F} \text{DTW}(A_{:, f}, B_{:, f})$$
 
 ### 2.2. Khoảng cách Cosine (`cosine`)
@@ -47,14 +48,16 @@ Dùng để đo lường khoảng cách hình thái giữa hai chuỗi thời gi
 Đo hướng của hai vector phẳng (flattened vectors) đại diện cho toàn bộ ma trận chỉ số kinh tế qua các năm mà không phụ thuộc vào độ dài/quy mô tuyệt đối.
 
 - **Công thức toán học:**
-  $$D_{\text{Cosine}}(u, v) = 1 - \frac{u \cdot v}{\|u\|_2 \|v\|_2} = 1 - \frac{\sum_{i=1}^{n} u_i v_i}{\sqrt{\sum_{i=1}^{n} u_i^2} \sqrt{\sum_{i=1}^{n} v_i^2}}$$
+
+$$D_{\text{Cosine}}(u, v) = 1 - \frac{u \cdot v}{\|u\|_2 \|v\|_2} = 1 - \frac{\sum_{i=1}^{n} u_i v_i}{\sqrt{\sum_{i=1}^{n} u_i^2} \sqrt{\sum_{i=1}^{n} v_i^2}}$$
 
 ### 2.3. Khoảng cách Euclidean (`euclidean`)
 
 Đo lường khoảng cách thẳng (độ lệch tuyệt đối bình phương) giữa hai vector phẳng trong không gian đa chiều.
 
 - **Công thức toán học:**
-  $$D_{\text{Euclidean}}(u, v) = \|u - v\|_2 = \sqrt{\sum_{i=1}^{n} (u_i - v_i)^2}$$
+
+$$D_{\text{Euclidean}}(u, v) = \|u - v\|_2 = \sqrt{\sum_{i=1}^{n} (u_i - v_i)^2}$$
 
 ---
 
@@ -76,10 +79,12 @@ Là nền tảng tính toán độ phân kỳ thông tin (Entropy tương đối
 
 ### 3.3. Độ phân kỳ Jensen-Shannon (`jsd`)
 
-Sử dụng để đo độ lệch phân phối một cách đối xứng ($JSD(P \parallel Q) = JSD(Q \parallel P)$) và có giới hạn bảo toàn.
+Sử dụng để đo độ lệch phân phối một cách đối xứng ($$JSD(P \parallel Q) = JSD(Q \parallel P)$$) và có giới hạn bảo toàn.
 
 - **Công thức toán học:** Gọi $M$ là phân phối trung bình $M = \frac{1}{2}(P + Q)$, ta có:
+
   $$JSD(P \parallel Q) = \frac{1}{2} D_{\text{KL}}(P \parallel M) + \frac{1}{2} D_{\text{KL}}(Q \parallel M)$$
+
 - **Hàm đa biến trong code (`jsd_multi`):** Là trung bình cộng chỉ số JSD của phân phối thực nghiệm trên tất cả 7 đặc trưng.
 
 ---
