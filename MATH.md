@@ -87,17 +87,17 @@ Sử dụng để đo độ lệch phân phối một cách đối xứng ($JSD(
 
 ### 4.1. Gộp thứ hạng theo Borda Count (Phương án 1)
 
-Do các khoảng cách DTW, Cosine và Euclidean có miền giá trị và tỷ lệ (scale) hoàn toàn khác nhau, thuật toán sử dụng cơ chế xếp hạng không tham số (tương tự phương pháp Borda Count) thay vì cộng trực tiếp giá trị tuyệt đối. Tổng các thứ hạng thành phần sẽ tạo ra điểm số đánh giá độ tương đồng hình thái $\text{Score\_V1}$:
+Do các khoảng cách DTW, Cosine và Euclidean có miền giá trị và tỷ lệ (scale) hoàn toàn khác nhau, thuật toán sử dụng cơ chế xếp hạng không tham số (tương tự phương pháp Borda Count) thay vì cộng trực tiếp giá trị tuyệt đối. Tổng các thứ hạng thành phần sẽ tạo ra điểm số đánh giá độ tương đồng hình thái $\text{Score}_{V1}$:
 
-$$\text{Score\_V1} = \text{Rank}(\text{DTW}) + \text{Rank}(\text{Cosine}) + \text{Rank}(\text{Euclidean})$$
+$$\text{Score}_{V1} = \text{Rank}(\text{DTW}) + \text{Rank}(\text{Cosine}) + \text{Rank}(\text{Euclidean})$$
 
-*(Lưu ý: Quốc gia có $\text{Score\_V1}$ càng nhỏ tức là xếp hạng càng cao, thể hiện hình thái chuỗi thời gian càng giống với quốc gia mục tiêu).*
+*(Lưu ý: Quốc gia có $\text{Score}_{V1}$ càng nhỏ tức là xếp hạng càng cao, thể hiện hình thái chuỗi thời gian càng giống với quốc gia mục tiêu).*
 
-### 4.2. Xếp hạng Tích hợp Toàn diện (`Rank_Combined`)
+### 4.2. Xếp hạng Tích hợp Toàn diện (`Rank\_Combined`)
 
 Sử dụng trung bình toán học để dung hòa hai góc nhìn phân tích hoàn toàn độc lập: thứ hạng về mặt biến động hình thái theo thời gian (V1) và thứ hạng về bản chất cấu trúc phân phối nội tại (V2 - JSD). Phép toán này triệt tiêu độ lệch của từng phương pháp đơn lẻ, cho ra thứ hạng độ tương đồng (Similarity Ranking) cuối cùng:
 
-$$\text{Rank\_Combined} = \frac{\text{Rank\_V1} + \text{Rank\_V2}}{2}$$
+$$\text{Rank}_{Combined} = \frac{\text{Rank}_{V1} + \text{Rank}_{V2}}{2}$$
 
 ---
 
