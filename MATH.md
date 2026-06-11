@@ -83,7 +83,6 @@ Sử dụng để đo độ lệch phân phối một cách đối xứng ($JSD(
 - **Hàm đa biến trong code (`jsd_multi`):** Là trung bình cộng chỉ số JSD của phân phối thực nghiệm trên tất cả 7 đặc trưng.
 
 ---
-
 ## 4. Tích hợp kết quả (Ranking Fusion)
 
 ### 4.1. Gộp thứ hạng theo Borda Count (Phương án 1)
@@ -96,31 +95,30 @@ $$\text{Score\_V1} = \text{Rank}(\text{DTW}) + \text{Rank}(\text{Cosine}) + \tex
 
 ### 4.2. Xếp hạng Tích hợp Toàn diện (`Rank_Combined`)
 
+Sử dụng trung bình toán học để dung hòa hai góc nhìn phân tích hoàn toàn độc lập: thứ hạng về mặt biến động hình thái theo thời gian (V1) và thứ hạng về bản chất cấu trúc phân phối nội tại (V2 - JSD). Phép toán này triệt tiêu độ lệch của từng phương pháp đơn lẻ, cho ra thứ hạng độ tương đồng (Similarity Ranking) cuối cùng:
+
+$$\text{Rank\_Combined} = \frac{\text{Rank\_V1} + \text{Rank\_V2}}{2}$$
+
 ---
 
-### 5.1. Mô hình Phân cụm (Clustering)
+## 5. Mô hình Phân cụm (Clustering)
 
 ### 5.1. Thuật toán K-Means ($K=3$)
 
 Sử dụng để phân tách không gian quốc gia thành 3 dải kinh tế tách biệt dựa trên nguyên lý cực tiểu hóa phương sai nội cụm.
-Hàm mục tiêu WCSS (Within-Cluster Sum of Squares): 
-Thuật toán tìm kiếm các tâm cụm $\mu_k$ sao cho tổng bình phương khoảng cách từ mỗi điểm dữ liệu $x_i$ đến tâm cụm tương ứng của nó $C_k$ là nhỏ nhất:
+
+- **Hàm mục tiêu WCSS (Within-Cluster Sum of Squares):** Thuật toán tìm kiếm các tâm cụm $\mu_k$ sao cho tổng bình phương khoảng cách từ mỗi điểm dữ liệu $x_i$ đến tâm cụm tương ứng của nó $C_k$ là nhỏ nhất:
 $$J = \sum_{k=1}^{K} \sum_{x_i \in C_k} \|x_i - \mu_k\|^2$$
 
 ### 5.2. Phân tích Thành phần Chính (PCA - Principal Component Analysis)
 
 Được sử dụng để nén không gian đa chiều (7 đặc trưng) xuống còn 2 chiều (2D) nhằm trực quan hóa các cụm K-Means, đồng thời giữ lại tối đa lượng phương sai (thông tin) gốc.
 
-**Công thức toán học:** PCA tìm các vector riêng (eigenvectors) $w$ và giá trị riêng (eigenvalues) $\lambda$ từ ma trận hiệp phương sai $C$ của dữ liệu:
-$$C w = \lambda w$$Dữ liệu sau đó được chiếu lên các vector riêng có giá trị riêng lớn nhất để tạo ra các tọa độ mới $Z$:$$Z = X W$$
+- **Công thức toán học:** PCA tìm các vector riêng (eigenvectors) $w$ và giá trị riêng (eigenvalues) $\lambda$ từ ma trận hiệp phương sai $C$ của dữ liệu:
+$$C w = \lambda w$$
 
-Sử dụng để phân tách không gian quốc gia thành 3 dải kinh tế tách biệt dựa trên nguyên lý cực tiểu hóa phương sai nội cụm.Hàm mục tiêu WCSS (Within-Cluster Sum of Squares): Thuật toán tìm kiếm các tâm cụm $\mu_k$ sao cho tổng bình phương khoảng cách từ mỗi điểm dữ liệu $x_i$ đến tâm cụm tương ứng của nó $C_k$ là nhỏ nhất:
-$$J = \sum_{k=1}^{K} \sum_{x_i \in C_k} \|x_i - \mu_k\|^2$$
-
-Sử dụng trung bình toán học để dung hòa hai góc nhìn phân tích hoàn toàn độc lập: thứ hạng về mặt biến động hình thái theo thời gian (V1) và thứ hạng về bản chất cấu trúc phân phối nội tại (V2 - JSD). Phép toán này triệt tiêu độ lệch của từng phương pháp đơn lẻ, cho ra thứ hạng độ tương đồng (Similarity Ranking) cuối cùng:
-
-$$\text{Rank\_Combined} = \frac{\text{Rank\_V1} + \text{Rank\_V2}}{2}$$
-
+Dữ liệu sau đó được chiếu lên các vector riêng có giá trị riêng lớn nhất để tạo ra các tọa độ mới $Z$:
+$$Z = X W$$
 ### 6. Kiểm định Thống kê (Statistical Validation)
 ### 6.1. Kiểm định Phân tích Phương sai (ANOVA - Analysis of Variance)
 Sử dụng làm bước Post-processing Validation nhằm xác nhận về mặt toán học ($p-value \approx 0$) rằng 3 cụm do K-Means sinh ra có sự khác biệt thực sự về bản chất, không phải do ngẫu nhiên.
